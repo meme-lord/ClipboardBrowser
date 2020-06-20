@@ -1,0 +1,37 @@
+Windows Registry Editor Version 5.00
+
+; Based on https://tor.stackexchange.com/questions/4125/setting-tor-browser-as-default-browser-in-windows
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\ClipboardBrowser\Capabilities]
+"ApplicationDescription"="ClipboardBrowser - Copy URLs to clipboard instead of opening browser"
+"ApplicationName"="Clipboard Browser"
+
+;[HKEY_LOCAL_MACHINE\SOFTWARE\ClipboardBrowser\Capabilities\FileAssociations]
+;".htm"="ClipboardBrowserURL"
+;".html"="ClipboardBrowserURL"
+;".shtml"="ClipboardBrowserURL"
+;".xht"="ClipboardBrowserURL"
+;".xhtml"="ClipboardBrowserURL"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\ClipboardBrowser\Capabilities\URLAssociations]
+"ftp"="ClipboardBrowserURL"
+"http"="ClipboardBrowserURL"
+"https"="ClipboardBrowserURL"
+
+; Register to Default Programs
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\RegisteredApplications]
+"ClipboardBrowser"="Software\\ClipboardBrowser\\Capabilities"
+
+; ClipboardBrowserURL HANDLER:
+
+[HKEY_LOCAL_MACHINE\Software\Classes\ClipboardBrowserURL]
+@="ClipboardBrowserURL Browser Document"
+"FriendlyTypeName"="ClipboardBrowserURL Browser Document"
+
+[HKEY_LOCAL_MACHINE\Software\Classes\ClipboardBrowserURL\shell]
+
+[HKEY_LOCAL_MACHINE\Software\Classes\ClipboardBrowserURL\shell\open]
+
+[HKEY_LOCAL_MACHINE\Software\Classes\ClipboardBrowserURL\shell\open\command]
+@="\"C:\\Program Files\\Python37\\pythonw.exe\" \"C:\\Program Files\\ClipboardBrowser\\clipboardbrowser.py\" \"%1\""
